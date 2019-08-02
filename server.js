@@ -7,7 +7,10 @@ var path=require('path');
 app.set('views',path.join(__dirname,'views'));
 app.set('view engine','hbs');
 
-app.use(session({secret:'max',saveUninitialized:true,resave:false}));
+
+app.use(session({secret:'asdfsd234324',saveUninitialized:true,resave:false}));
+
+
 app.listen(3000,(request,response)=>{
   console.log("server started:3000");
 });
@@ -36,8 +39,7 @@ console.log(result)
       else if(result.length>0)
       {
         request.session.views=uid;
-        console.log(">>>"+request.session.views);
-         response.render('home',{user:request.session.views});
+        response.render('home',{user:request.session.views});
     }else
       response.render('index',{'msg':'Login Fail'});
  });
@@ -76,9 +78,8 @@ app.get('/updateEmp',(request,response)=>{
   });
 });
 
-
 app.post('/empInsert',(request,response)=>{
-  var eid=request.body.eid;
+var eid=request.body.eid;
 var ename=request.body.ename;
 var salary=request.body.salary;
 var sql="insert into Employee values("+eid+",'"+ename+"',"+salary+")";
@@ -106,7 +107,6 @@ app.get('/deleteEmp',(request,response)=>{
              response.render('viewEmp',{'list':result,'msg':'Data Deleted...'});
                 }
         });
-
       }
   });
 });
